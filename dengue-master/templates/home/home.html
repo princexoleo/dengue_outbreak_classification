@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>searching page - Dashboard Template</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    {%load static%}
+    <link rel="stylesheet" href={% static 'css/fontawesome.min.css' %}>
+
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="{% static 'css/tooplate.css' %}">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+</head>
+
+<body id="reportsPage" class="bg02">
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand" href="index.html">
+                            <i class="fas fa-3x fa-tachometer-alt tm-site-icon"></i>
+                            <h1 class="tm-site-title mb-0">Dashboard</h1>
+                        </a>
+                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Dashboard
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Reports
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Daily Report</a>
+                                        <a class="dropdown-item" href="#">Weekly Report</a>
+                                        <a class="dropdown-item" href="#">Yearly Report</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="home.html">Search</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="accounts.html">Accounts</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Settings
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="#">Billing</a>
+                                        <a class="dropdown-item" href="#">Customize</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex" href="login.html">
+                                        <i class="far fa-user mr-2 tm-logout-icon"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="s01">
+
+        <fieldset>
+          <legend>Discover the Infected City</legend>
+        </fieldset>
+                <form method='get' action={% url 'predict' %}>
+                    {% csrf_token %}
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <input id="date" type="text" name="date" value="{{ request.GET.date }}" />
+          </div>
+          <div class="input-field second-wrap">
+            <input id="location" type="text" placeholder="location" name="location" value="{{ request.GET.location }}"/>
+          </div>
+          <div class="input-field third-wrap">
+            <button class="btn-search" type="submit">Search</button>
+          </div>
+        </div>
+        
+                    
+         <fieldset>
+        <legend>Search Result</legend>
+        <p>
+          <label>Moon phase</label>
+          <input type = "text"
+                 id = "Moon_phase"
+                 value = {{ f.moonPhase }} />
+        </p>
+        <p>
+          <label>Precipitation intensity</label>
+          <input type = "text"
+                 id = "Precipitation_intensity"
+                 value ={{ f.PrecipIntensity }}   />
+        </p>
+        <p>
+          <label>Precipitation intensity max</label>
+          <input type = "text"
+                 id = "Precipitation_intensity_max"
+                 value = {{ f.precipIntensityMax}}  />
+        </p>
+        <p>
+          <label>Precipitation probability</label>
+          <input type = "text"
+                 id = "Precipitation_probability"
+                 value = {{ f.precipProbability}}  />
+        </p>
+        <p>
+          <label>Temperature high</label>
+          <input type = "text"
+                 id = "Temperature_high"
+                 value = {{ f.temperatureHigh }}  />
+        </p>
+        <p>
+          <label>Temperature low</label>
+          <input type = "text"
+                 id = "Temperature_low"
+                 value = {{ f.temperatureLow}}  />
+        </p>
+                <p>
+          <label>Apparent temperature high</label>
+          <input type = "text"
+                 id = "Apparent_temperature_high"
+                 value = {{ f.apparentTemperatureHigh }}  />
+        </p>
+                     <p>
+          <label>Apparent temperature low</label>
+          <input type = "text"
+                 id = "Apparent_temperature_low"
+                 value = {{ f.apparentTemperatureLow}}  />
+        </p>
+                     <p>
+          <label>Dew point</label>
+          <input type = "text"
+                 id = "Dew_point"
+                 value = {{ f.dewPoint}}  />
+        </p>
+                     <p>
+          <label>Humidity</label>
+          <input type = "text"
+                 id = "Humidity"
+                 value = {{ f.humidity}}  />
+        </p>
+                     <p>
+          <label>Pressure</label>
+          <input type = "text"
+                 id = "Pressure"
+                 value = {{ f.pressure }}  />
+        </p>
+                     <p>
+          <label>Wind speed</label>
+          <input type = "text"
+                 id = "Wind_speed"
+                 value = {{ f.windSpeed}}  />
+        </p>
+                     <p>
+          <label>Wind dust</label>
+          <input type = "text"
+                 id = "Wind_dust"
+                 value = {{ f.windGust }}  />
+        </p>
+                     <p>
+          <label>Wind bearing</label>
+          <input type = "text"
+                 id = "Wind_bearing"
+                 value = {{ f.windBearing}}  />
+        </p>
+                     <p>
+          <label>Cloud cover</label>
+          <input type = "text"
+                 id = "Cloud_cover"
+                 value = {{ f.cloudCover }} />
+        </p>
+                     <p>
+          <label>UV index</label>
+          <input type = "text"
+                 id = "UV_index"
+                 value = {{ f.uvIndex }}  />
+        </p>
+                     <p>
+          <label>Visibility</label>
+          <input type = "text"
+                 id = "Visibility"
+                 value = {{ f.visibility}}  />
+        </p>
+                     <p>
+          <label>Ozone</label>
+          <input type = "text"
+                 id = "Ozone"
+                 value = {{ f.ozone }} />
+        </p>
+                     <p>
+          <label>Temperature min</label>
+          <input type = "text"
+                 id = "Temperature_min"
+                 value = {{ f.temperatureMin}}  />
+        </p>
+              <p>
+          <label>Temperature max</label>
+          <input type = "text"
+                 id = "Temperatur_max"
+                 value = {{ f.temperatureMax}}  />
+        </p>
+              <p>
+          <label>Apparent temperature min</label>
+          <input type = "text"
+                 id = "Apparent_temperature_min"
+                 value = {{ f.apparentTemperatureMin }} />
+        </p>
+              <p>
+          <label>Apparent temperature max</label>
+          <input type = "text"
+                 id = "Apparent_temperature_max"
+                 value = {{ f.apparentTemperatureMax}}  />
+        </p>
+              <p>
+          <label>Result</label>
+          <input type = "text"
+                 id = "Accuracy"
+                 value = {{ class}}  />
+        </p>
+      </fieldset>
+
+</form>
+    </div>
+        
+            <footer class="row tm-mt-small">
+                <div class="col-12 font-weight-light">
+                    <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+
+
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>
